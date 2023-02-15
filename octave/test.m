@@ -12,7 +12,6 @@ srl_flush(port)
 
 for cntr=  1:100
   [rxdata, count] = srl_read(port, 3);
-  recvd = char(rxdata);
   MeasVal = (((single(rxdata(2))*256) + single(rxdata(3)))-32768)/32768;
   MeasVal
   %MeasVal = MeasVal * 10
