@@ -37,7 +37,7 @@ def gsvSetDatarate(datarate):
 	frame = b"\x8a"+value
 	serialConnection.write(frame)
 
-def GSVgetThreshold():
+def gsvGetThreshold():
 	gsvStop()
 	serialConnection.reset_input_buffer()
 	serialConnection.write(b'\x21')
@@ -50,7 +50,7 @@ def GSVgetThreshold():
 	print(f'oberer Schwellwert: {oG}')
 	print(f'unterer Schwellwert: {uG}')
 
-def GSVsetThreshold(oG, uG):
+def gsvSetThreshold(oG, uG):
 	gsvStop()
 	serialConnection.reset_input_buffer()
 	frame = b'\x20'
@@ -70,9 +70,9 @@ if __name__ == '__main__':
 	serialConnection = serial.Serial("COM12", 38400, timeout=1)
 	serialConnection.isOpen()
 	sleep(1)
-	GSVgetThreshold()
-	GSVsetThreshold(0.4, -0.4)
-	GSVgetThreshold()
+	gsvGetThreshold()
+	gsvSetThreshold(0.4, -0.4)
+	gsvGetThreshold()
 
 	gsvGetDatarate()
 	gsvSetDatarate(10)
